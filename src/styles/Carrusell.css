@@ -1,0 +1,152 @@
+#daily-forecast, #hourly-forecast {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.carrusell {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 25px;
+  margin: 16px;
+}
+
+.carrusell-content {
+  width: 80%;
+  display: flex;
+  gap: 10px;
+  overflow: hidden;
+  padding: 10px 0 10px 10px;
+}
+
+.forecast-item {
+  width: calc(20% - 10px);
+  min-width: 150px;
+  flex: 0 0 auto;
+  padding: 16px 0;
+  background-color: rgba(75, 75, 75, .15);
+  backdrop-filter: blur(4px);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 8px;
+  transition: transform 1s ease;
+}
+
+.forecast-item--fecha {
+  color: rgba(113, 231, 221, 0.8);
+}
+
+.forecast-item--detalle {
+  /* font-size: 1.1em; */
+  opacity: .85;
+  
+}
+
+.wind-speed {
+  font-size: .86em;
+  opacity: .85;
+}
+
+.forecast-item--icon {
+  width: 60px;
+  margin-bottom: -16px;
+}
+
+.temperaturas, .wind {
+  display: flex;
+  gap: 4px;
+}
+
+.temperaturas {
+  font-size: 1.3em;
+}
+
+.wind span {
+  font-style: italic;
+}
+
+.wind {
+  margin-top: 4px;
+  margin-bottom: -4px;
+}
+
+.temp-min {
+  color: #4cbbe4;
+}
+
+.temp-max {
+  color: rgb(236, 68, 39);
+}
+
+
+
+
+.btn-prev, .btn-next {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  position: relative;
+  margin: 0;
+}
+
+.btn-prev::before, .btn-next::before {
+  content: '';
+  width: 9px;
+  height: 9px;
+  border-bottom: 2px solid white;
+  border-left: 2px solid white;
+  position: absolute;
+  top: 50%;
+  left: 54%;
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.btn-next::before {
+  transform: translate(-50%, -50%) rotate(-135deg);
+  left: 47%;
+}
+
+h3 {
+  /* text-align: left; */
+  color: #f4fafc;
+  font-size: 1.6em;
+  text-shadow: 1px 1px 10px rgba(83, 190, 209, 0.774);
+}
+
+@media screen and (max-width: 1305px) {
+  .forecast-item {
+    width: calc(25% - 10px);
+  }
+}
+
+@media screen and (max-width: 1055px) {
+  .forecast-item {
+    width: calc(33.3% - 10px);
+  }
+}
+
+@media screen and (max-width: 795px) {
+  .forecast-item {
+    width: calc(50% - 10px);
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .forecast-item {
+    width: calc(100%);
+  }
+
+  .carrusell-content {
+    max-width: 220px;
+  }
+  
+  .carrusell {
+    gap: 8px;
+  }
+}

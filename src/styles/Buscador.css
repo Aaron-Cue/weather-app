@@ -1,0 +1,62 @@
+.buscador {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin: 0;
+}
+
+.input-buscador {
+  width: 80%;
+  min-width: 300px;
+  max-width: 500px;
+  padding: 10px 16px;
+  border: 2px solid #2c3e50;
+  background-color: #1b2735;
+  border-radius: 25px;
+  font-size: 16px;
+  outline: none;
+  color: #e0e0e0;
+}
+
+.input-buscador:focus {
+  border-color: #4a6fa5;
+  box-shadow: 0 0 6px #4a6fa5;
+}
+
+.input-buscador::placeholder {
+  color: #8fa1b2;
+  font-style: italic;
+}
+
+.btn-buscador, .btn-prev, .btn-next {
+  background-color: #264a75;
+  color: #dfdfdfec;
+  border: none;
+  padding: 10px 15px;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 25px;
+  cursor: pointer;
+  margin-left: 12px;
+  transition: transform .13s ease-in-out;
+}
+
+.btn-buscador:hover, .btn-prev:hover, .btn-next:hover {
+  background-color: #255283;
+  color: rgb(235, 235, 235);
+  box-shadow: 0 0 7px rgba(80, 120, 180, 0.4);
+}
+
+.btn-buscador:active {
+  transform: scale(0.95);
+}
+
+
+
+
+
+@media screen and (max-width: 400px) {
+  .input-buscador {
+    min-width: auto;
+  }
+}
