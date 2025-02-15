@@ -17,25 +17,13 @@
 .current-weather--info {
   display: flex;
   align-items: center;
-  gap: 20px;
+  gap: 12px;
   margin: -10px 0 -5px 0;
-}
-
-.current-weather--info img {
-  width: 40%;
-  height: auto;
-  margin-top: 20px;
-  margin-bottom: -10px;
 }
 
 .temp {
   font-size: 4.5em;
   display: flex;
-}
-
-.temp div {
-  font-size: 35px;
-  margin-top: 10px;
 }
 
 .weather-state {
@@ -48,4 +36,24 @@
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   gap: 8px;
+}
+
+.unit-current-temp {
+  display: flex;
+  font-size: 60px;
+  margin-top: 14px;
+}
+
+.unit-current-temp span {
+  align-self: center;
+}
+
+.info-extra--type p {
+  font-style: italic;
+  color: rgb(160, 160, 160);
+}
+
+.current-weather--icon {
+  font-size: 3em;
+  margin-top: 16px;
 }

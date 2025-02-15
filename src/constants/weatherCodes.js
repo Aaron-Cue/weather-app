@@ -1,0 +1,32 @@
+const weatherDescriptions = {
+  0: { description: 'Clear sky', icon: '☀️' },
+  1: { description: 'Mainly clear', icon: '🌤️' },
+  2: { description: 'Partly cloudy', icon: '⛅' },
+  3: { description: 'Overcast', icon: '☁️' },
+  45: { description: 'Fog', icon: '🌫️' },
+  48: { description: 'Depositing rime fog', icon: '🌫️❄️' },
+  51: { description: 'Drizzle (Light)', icon: '🌦️' },
+  53: { description: 'Drizzle (Moderate)', icon: '🌦️' },
+  55: { description: 'Drizzle (Dense)', icon: '🌦️' },
+  56: { description: 'Freezing Drizzle (Light)', icon: '🌨️' },
+  57: { description: 'Freezing Drizzle (Dense)', icon: '🌨️❄️' },
+  61: { description: 'Rain (Slight)', icon: '🌧️' },
+  63: { description: 'Rain (Moderate)', icon: '🌧️' },
+  65: { description: 'Rain (Heavy)', icon: '🌧️⛈️' },
+  66: { description: 'Freezing Rain (Light)', icon: '🌨️' },
+  67: { description: 'Freezing Rain (Heavy)', icon: '🌨️❄️' },
+  71: { description: 'Snow fall (Slight)', icon: '❄️' },
+  73: { description: 'Snow fall (Moderate)', icon: '❄️❄️' },
+  75: { description: 'Snow fall (Heavy)', icon: '❄️❄️❄️' },
+  77: { description: 'Snow grains', icon: '🌨️' },
+  80: { description: 'Rain showers (Slight)', icon: '🌦️' },
+  81: { description: 'Rain showers (Moderate)', icon: '🌦️' },
+  82: { description: 'Rain showers (Violent)', icon: '⛈️' },
+  85: { description: 'Snow showers (Slight)', icon: '🌨️' },
+  86: { description: 'Snow showers (Heavy)', icon: '🌨️❄️' },
+  95: { description: 'Thunderstorm (Slight/Moderate)', icon: '⛈️' },
+  96: { description: 'Thunderstorm with hail (Slight)', icon: '⛈️❄️' },
+  99: { description: 'Thunderstorm with hail (Heavy)', icon: '⛈️❄️❄️' }
+}
+
+export default weatherDescriptions
