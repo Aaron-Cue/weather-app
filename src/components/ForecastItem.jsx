@@ -1,4 +1,5 @@
 import '../styles/Carrusell.css'
+import { getInfoByIndex } from '../utils/getInfoByIndex.js'
 
 export default function ForecastItem ({ index, hourly, infoDaily, infoHourly, indexItem }) {
   const traslacion = {
@@ -8,15 +9,8 @@ export default function ForecastItem ({ index, hourly, infoDaily, infoHourly, in
         : `translateX(calc(-${index * 100}% - ${index * 10}px))`
   }
 
-  // GET ONE INFO
-  const getOneInfo = (info, index) => {
-    const oneInfo = Object.fromEntries(Object.entries(info).map(([key, value]) => [key, value[index]]))
-    return oneInfo
-  }
-
-  const oneInfoDaily = infoDaily ? getOneInfo(infoDaily, indexItem) : {}
-
-  const oneInfoHourly = infoHourly ? getOneInfo(infoHourly, indexItem) : {}
+  const oneInfoDaily = infoDaily ? getInfoByIndex(infoDaily, indexItem) : {}
+  const oneInfoHourly = infoHourly ? getInfoByIndex(infoHourly, indexItem) : {}
 
   return (
     <article className='forecast-item' style={traslacion}>

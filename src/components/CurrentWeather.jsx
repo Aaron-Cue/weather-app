@@ -23,7 +23,7 @@ export default function CurrentWeather ({ info }) {
           {info.currentHumidity}%
         </div>
         <div className='info-extra--type'>
-          <p>apparent temperature</p>
+          <p>apparent temp</p>
           {info.currentApparentTemperature} °C
         </div>
       </div>
