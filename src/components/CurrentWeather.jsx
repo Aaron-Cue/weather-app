@@ -1,9 +1,9 @@
 import '../styles/CurrentWeather.css'
 
-export default function CurrentWeather ({ cityName, info }) {
+export default function CurrentWeather ({ info }) {
   return (
     <section id='current-weather'>
-      <h2 className='current-weather--city'>{cityName}</h2>
+      <h2 className='current-weather--city'>{info.cityName}</h2>
       <div className='current-weather--info'>
         <div className='current-weather--icon'>
           {info.currentStateIcon}
@@ -16,15 +16,15 @@ export default function CurrentWeather ({ cityName, info }) {
       <div className='info-extra'>
         <div className='info-extra--type'>
           <p>wine speed</p>
-          {info.currentWine || 10} km/h
+          {info.currentWind} km/h
         </div>
         <div className='info-extra--type'>
           <p>humidity</p>
-          {info.currentHumidity || 10}%
+          {info.currentHumidity}%
         </div>
         <div className='info-extra--type'>
           <p>apparent temperature</p>
-          {info.currentApparentTemperature || 10} °C
+          {info.currentApparentTemperature} °C
         </div>
       </div>
     </section>

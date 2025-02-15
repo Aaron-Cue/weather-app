@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import '../styles/Carrusell.css'
 import ForecastItem from './ForecastItem'
 
-export default function Carrusell ({ cant }) {
+export default function Carrusell ({ cant, hourly, infoDaily, infoHourly }) {
   // devuelve la cantidad de elementos visibles en el carrusell dependiendo del ancho de la pantalla
   const getVisibleElems = (width) => {
     if (width <= 600) return 1
@@ -38,7 +38,7 @@ export default function Carrusell ({ cant }) {
       <button className='btn-prev' onClick={handlePrevClick} />
       <div className='carrusell-content'>
         {Array.from({ length: cant }, (_, i) => (
-          <ForecastItem key={i} index={indexItem} />
+          <ForecastItem key={i} indexItem={i} index={indexItem} hourly={hourly} infoDaily={infoDaily} infoHourly={infoHourly} />
         ))}
       </div>
       <button className='btn-next' onClick={handleNextClick} />

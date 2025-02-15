@@ -39,7 +39,7 @@
 }
 
 .forecast-item--fecha {
-  color: rgba(113, 231, 221, 0.8);
+  color: rgba(113, 231, 221, 0.75);
 }
 
 .forecast-item--detalle {
@@ -51,11 +51,6 @@
 .wind-speed {
   font-size: .86em;
   opacity: .85;
-}
-
-.forecast-item--icon {
-  width: 60px;
-  margin-bottom: -16px;
 }
 
 .temperaturas, .wind {
@@ -120,6 +115,12 @@ h3 {
   text-shadow: 1px 1px 10px rgba(83, 190, 209, 0.774);
 }
 
+.temperaturas .temp {
+  font-size: 1.3em;
+  margin-left: 5px;
+  color: rgba(113, 231, 221, .9);
+}
+
 @media screen and (max-width: 1305px) {
   .forecast-item {
     width: calc(25% - 10px);
@@ -136,6 +137,10 @@ h3 {
   .forecast-item {
     width: calc(50% - 10px);
   }
+  
+  #root {
+    padding: 0;
+  }
 }
 
 @media screen and (max-width: 600px) {
@@ -149,5 +154,9 @@ h3 {
   
   .carrusell {
     gap: 8px;
+  }
+
+  #root {
+    padding: 0;
   }
 }
