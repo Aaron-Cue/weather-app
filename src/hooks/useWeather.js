@@ -30,7 +30,7 @@ export default function useWeather (city) {
       })
 
       setInfoDaily({
-        days: data.daily.time.map(day => day.slice(5, day.length)),
+        days: data.daily.time.map(day => day.slice(5, day.length)), // extrae solo la fecha
         minTemps: data.daily.temperature_2m_min,
         maxTemps: data.daily.temperature_2m_max,
         windSpeeds: data.daily.wind_speed_10m_max,
@@ -45,8 +45,14 @@ export default function useWeather (city) {
         }
       })
 
+      // hace que solo muestre la hora en formato 24hs, filtrando cada 3 horas, extrae solo 8
+      const hoursFormatted = data.hourly.time
+        .map(hour => hour.slice(11, hour.length))
+        .filter((hour, index) => index % 3 === 0)
+        .slice(0, 9)
+
       setInfoHourly({
-        hours: data.hourly.time.map(hour => hour.slice(11, hour.length)),
+        hours: hoursFormatted,
         temps: data.hourly.temperature_2m,
         windSpeeds: data.hourly.wind_speed_10m,
         hourlyStates: hourlyStatesFormatted

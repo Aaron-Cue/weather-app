@@ -1,7 +1,7 @@
 import Carrusell from './Carrusell'
 
 export default function HourlyForecast ({ info }) {
-  const cantElems = 8
+  const cantElems = 9
   const hourly = true
 
   return (
