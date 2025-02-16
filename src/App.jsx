@@ -9,6 +9,18 @@ function App () {
   const [city, setCity] = useState('buenos aires')
   const { infoToday, infoDaily, infoHourly } = useWeather(city)
 
+  if (Object.keys(infoToday).length === 0 || Object.keys(infoDaily).length === 0 || Object.keys(infoHourly).length === 0) {
+    return (
+      <>
+        <header>
+          <h1>Weather App</h1>
+          <Buscador setCity={setCity} />
+        </header>
+        <h2 className='charge'>Cargando...</h2>
+      </>
+    )
+  }
+
   return (
     <>
       <header>

@@ -21,19 +21,35 @@ export default function useWeather (city) {
         currentStateIcon: weatherInfo[data.current.weather_code].icon
       })
 
+      // array de objetos con los valores segun weather_code
+      const dailyStatesFormatted = data.daily.weather_code.map(code => {
+        return {
+          state: weatherInfo[code].description,
+          icon: weatherInfo[code].icon
+        }
+      })
+
       setInfoDaily({
-        days: data.daily.time,
+        days: data.daily.time.map(day => day.slice(5, day.length)),
         minTemps: data.daily.temperature_2m_min,
         maxTemps: data.daily.temperature_2m_max,
         windSpeeds: data.daily.wind_speed_10m_max,
-        dailyStates: data.daily.weather_code
+        dailyStates: dailyStatesFormatted
+      })
+
+      // array de objetos con los valores segun weather_code
+      const hourlyStatesFormatted = data.hourly.weather_code.map(code => {
+        return {
+          state: weatherInfo[code].description,
+          icon: weatherInfo[code].icon
+        }
       })
 
       setInfoHourly({
-        hours: data.hourly.time,
+        hours: data.hourly.time.map(hour => hour.slice(11, hour.length)),
         temps: data.hourly.temperature_2m,
         windSpeeds: data.hourly.wind_speed_10m,
-        hourlyStates: data.hourly.weather_code
+        hourlyStates: hourlyStatesFormatted
       })
     } catch (error) {
       console.error('error al obtener datos: ', error)

@@ -54,3 +54,8 @@
 .current-weather--icon {
   font-size: 3em;
 }
+
+.forecast-item--icon {
+  font-size: 2.5em;
+  margin: -4px 0;
+}
