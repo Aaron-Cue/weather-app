@@ -6,6 +6,38 @@ export default function useWeather (city) {
   const [infoDaily, setInfoDaily] = useState({})
   const [infoHourly, setInfoHourly] = useState({})
 
+  // funciones para formatear los datos
+  const formatDailyData = (daily) => {
+    return {
+      days: daily.time.map(day => day.slice(5)), // Extrae solo la fecha
+      minTemps: daily.temperature_2m_min,
+      maxTemps: daily.temperature_2m_max,
+      windSpeeds: daily.wind_speed_10m_max,
+      dailyStates: daily.weather_code.map(code => ({
+        state: weatherInfo[code].description,
+        icon: weatherInfo[code].icon
+      }))
+    }
+  }
+
+  const formatHourlyData = (hourly) => {
+    const hoursFiltered = hourly.time
+      .map(hour => hour.slice(11)) // Extrae solo la hora
+      .filter((_, index) => index % 3 === 0) // Cada 3 horas
+      .slice(0, 9) // Solo 9 valores
+
+    return {
+      hours: hoursFiltered,
+      temps: hourly.temperature_2m,
+      windSpeeds: hourly.wind_speed_10m,
+      // array de objetos con los valores segun weather_code
+      hourlyStates: hourly.weather_code.map(code => ({
+        state: weatherInfo[code].description,
+        icon: weatherInfo[code].icon
+      }))
+    }
+  }
+
   const fetchInfo = useCallback(async (lat, lon, cityName) => {
     try {
       const res = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,relative_humidity_2m,apparent_temperature,precipitation,weather_code,wind_speed_10m&hourly=temperature_2m,weather_code,wind_speed_10m&daily=weather_code,temperature_2m_max,temperature_2m_min,wind_speed_10m_max&timezone=America%2FSao_Paulo`)
@@ -21,42 +53,8 @@ export default function useWeather (city) {
         currentStateIcon: weatherInfo[data.current.weather_code].icon
       })
 
-      // array de objetos con los valores segun weather_code
-      const dailyStatesFormatted = data.daily.weather_code.map(code => {
-        return {
-          state: weatherInfo[code].description,
-          icon: weatherInfo[code].icon
-        }
-      })
-
-      setInfoDaily({
-        days: data.daily.time.map(day => day.slice(5, day.length)), // extrae solo la fecha
-        minTemps: data.daily.temperature_2m_min,
-        maxTemps: data.daily.temperature_2m_max,
-        windSpeeds: data.daily.wind_speed_10m_max,
-        dailyStates: dailyStatesFormatted
-      })
-
-      // array de objetos con los valores segun weather_code
-      const hourlyStatesFormatted = data.hourly.weather_code.map(code => {
-        return {
-          state: weatherInfo[code].description,
-          icon: weatherInfo[code].icon
-        }
-      })
-
-      // hace que solo muestre la hora en formato 24hs, filtrando cada 3 horas, extrae solo 8
-      const hoursFormatted = data.hourly.time
-        .map(hour => hour.slice(11, hour.length))
-        .filter((hour, index) => index % 3 === 0)
-        .slice(0, 9)
-
-      setInfoHourly({
-        hours: hoursFormatted,
-        temps: data.hourly.temperature_2m,
-        windSpeeds: data.hourly.wind_speed_10m,
-        hourlyStates: hourlyStatesFormatted
-      })
+      setInfoDaily(formatDailyData(data.daily))
+      setInfoHourly(formatHourlyData(data.hourly))
     } catch (error) {
       console.error('error al obtener datos: ', error)
     }
@@ -64,15 +62,14 @@ export default function useWeather (city) {
 
   const fetchCoords = useCallback(async (ciudad) => {
     try {
+      console.log('fetching coords')
       const res = await fetch(`https://nominatim.openstreetmap.org/search?city=${ciudad}&format=json`)
       const data = await res.json()
 
-      if (!data) return
+      if (data.length === 0) return
 
-      const lat = Number(data[0].lat)
-      const lon = Number(data[0].lon)
-      const cityName = data[0].name
-      fetchInfo(lat, lon, cityName)
+      const { lat, lon, name: cityName } = data[0]
+      fetchInfo(Number(lat), Number(lon), cityName)
     } catch (error) {
       console.error('Error al obtener coordenadas: ', error)
     }
