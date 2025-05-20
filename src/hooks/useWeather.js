@@ -62,7 +62,6 @@ export default function useWeather (city) {
 
   const fetchCoords = useCallback(async (ciudad) => {
     try {
-      console.log('fetching coords')
       const res = await fetch(`https://nominatim.openstreetmap.org/search?city=${ciudad}&format=json`)
       const data = await res.json()
 

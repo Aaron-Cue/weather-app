@@ -1,18 +1,37 @@
-import { useRef } from 'react'
+import { useState } from 'react'
 import '../styles/Buscador.css'
+import { useCityTrieSearch } from '../hooks/useCitieTrieSearch'
 
-export default function Buscador ({ setCity }) {
-  const searchRef = useRef()
+export default function Buscador ({ setCity, trie }) {
+  const [query, setQuery] = useState('')
 
-  const handleSubmit = (e) => {
+  const results = useCityTrieSearch(query, trie)
+
+  const handleSubmit = e => {
     e.preventDefault()
-    setCity(searchRef.current.value)
+    setCity(query)
   }
 
   return (
-    <form action='get' className='buscador' onSubmit={(e) => handleSubmit(e)}>
-      <input type='text' ref={searchRef} placeholder='London, Paris, Rome' className='input-buscador' />
-      <button type='submit' className='btn-buscador'>Search</button>
+    <form action='get' className='buscador' onSubmit={e => handleSubmit(e)}>
+      <div>
+        <input
+          type='text'
+          onChange={e => setQuery(e.target.value)}
+          placeholder='London, Paris, Rome'
+          className='input-buscador'
+        />
+        <button type='submit' className='btn-buscador'>
+          Search
+        </button>
+      </div>
+      <ul>
+        {results.slice(0, 6).map((city, idx) => (
+          <li key={idx} onClick={e => setCity(city.name)}>
+            {city.name}
+          </li>
+        ))}
+      </ul>
     </form>
   )
 }
