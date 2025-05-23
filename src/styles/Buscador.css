@@ -1,14 +1,14 @@
 .buscador {
-  width: 100%;
+  width: 60%;
   display: flex;
+  flex-direction: column;
   justify-content: center;
-  margin: 0;
+  margin: 0 auto;
+  gap: 4px;
+  position: relative;
 }
 
 .input-buscador {
-  width: 80%;
-  min-width: 300px;
-  max-width: 500px;
   padding: 10px 16px;
   border: 2px solid #2c3e50;
   background-color: #1b2735;
@@ -29,6 +29,7 @@
 }
 
 .btn-buscador, .btn-prev, .btn-next {
+  max-width: 90px;
   background-color: #264a75;
   color: #dfdfdfec;
   border: none;
@@ -51,8 +52,47 @@
   transform: scale(0.95);
 }
 
+.results {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  background: #285c9bef;
+  border-radius: 12px;
+  box-shadow: 0 0px 16px rgba(255, 255, 255, 0.1);
+  overflow: hidden;
+  position: absolute;
+  top: 110%;
+  left: 0;
+  width: 100%;
+  z-index: 10;
+}
 
+.results li {
+  padding: 1rem;
+  border-bottom: 1px solid #ffffff48;
+  color: rgb(211, 211, 211);
+  cursor: pointer;
+  transition: background 0.2s;
+  font-weight: 500;
+}
 
+.results li:hover {
+  background: #326db6ef;
+  font-weight: 700;
+}
+
+.results li:last-child {
+  border-bottom: none;
+}
+
+.buscador-container {
+  width: 100%;
+  display: flex;
+}
+
+.btn-buscador, .input-buscador {
+  flex: 1;
+}
 
 
 @media screen and (max-width: 400px) {
@@ -60,3 +100,4 @@
     min-width: auto;
   }
 }
+
