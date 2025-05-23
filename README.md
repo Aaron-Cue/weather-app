@@ -1,15 +1,19 @@
-# Weather App 🌤️  
+# 🌤️ Weather App
 
-A weather application built with React that allows searching for a city and retrieving its current weather, the daily forecast for the week, and the hourly forecast for the day.  
+A React weather app that lets users search for a city and view current weather, daily, and hourly forecasts.
 
-## 🚀 Features  
+## 🚀 Features
 
-- Retrieves coordinates based on the city name.  
-- Fetches current weather and forecasts using coordinates.  
-- Uses a custom hook for API calls and response management.  
-- Optimized with `useCallback` and `useMemo` to prevent unnecessary renders.  
+- City search with **autocomplete** using a **Trie** built from a local `cities.json`
+- **Debounced** search with animated results via **Framer Motion**.
+- Fetches current, daily, and hourly weather using **custom hooks**.
 
-## 📡 APIs Used  
+## 🧩 Custom Hooks
 
-- **Coordinates API**: Converts a city name into latitude and longitude.  
-- **Weather API**: Retrieves current weather and forecasts based on coordinates.
+- `useCitySearch`: Debounced search in Trie, returns matching cities.
+- `useWeatherData`: Fetches and formats weather data based on the city name using `useCallback`.
+
+## 📡 APIs Used
+
+- **Geocoding API** – converts city names to coordinates.
+- **Weather API** – returns current weather and forecasts.
